@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Compra Fácil",
+    "slug": "compra-facil",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "comprafacil",
+    "plugins": [
+      "expo-router",
+      "expo-sqlite"
+    ],
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
