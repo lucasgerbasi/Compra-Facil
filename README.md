@@ -13,16 +13,16 @@
 ## Telas e Banco de Dados
 
 **Tela Inicial (Dashboard e Alertas):**
-![Tela Inicial](caminho/para/home-screen.png)
+![Tela Inicial](imgs/screenshot3.PNG)
 
 **Lista de Compras (Adicionando itens):**
-![Adicionar à Lista de Compras](caminho/para/add-shopping-list.png)
+![Adicionar à Lista de Compras](imgs/screenshot4.PNG)
 
 **Persistência Online (Supabase - Tabela products):**
-![Supabase Products](caminho/para/public-products.png)
+![Supabase Products](imgs/screenshot2.PNG)
 
 **Persistência Online (Supabase - Tabela shopping_items):**
-![Supabase Shopping Items](caminho/para/public-shopping-items.png)
+![Supabase Shopping Items](imgs/screenshot1.PNG)
 
 ## Próximos Passos (Bimestre 2)
 
