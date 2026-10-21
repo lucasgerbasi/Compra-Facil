@@ -1,0 +1,9 @@
+import * as SQLite from 'expo-sqlite'; import type {AppData,Product,ShoppingItem} from './types';
+let db:SQLite.SQLiteDatabase|null=null;
+async function getDb(){if(!db){db=await SQLite.openDatabaseAsync('compra-facil.db');await db.execAsync(`PRAGMA journal_mode=WAL;CREATE TABLE IF NOT EXISTS products(id TEXT PRIMARY KEY NOT NULL,name TEXT NOT NULL,quantity INTEGER NOT NULL DEFAULT 0,minimum_quantity INTEGER NOT NULL DEFAULT 1,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);CREATE TABLE IF NOT EXISTS shopping_items(id TEXT PRIMARY KEY NOT NULL,product_id TEXT,name TEXT NOT NULL,quantity INTEGER NOT NULL DEFAULT 1,completed INTEGER NOT NULL DEFAULT 0,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);`)}return db}
+export async function initDb(){await getDb();return getData()};
+export async function getData():Promise<AppData>{const d=await getDb();const products=await d.getAllAsync<Product>('SELECT * FROM products ORDER BY name COLLATE NOCASE');const rows=await d.getAllAsync<any>('SELECT * FROM shopping_items ORDER BY completed,created_at DESC');return{products,shopping:rows.map(r=>({...r,completed:Boolean(r.completed)}))}}
+export async function saveProduct(p:Product){const d=await getDb();await d.runAsync('INSERT OR REPLACE INTO products VALUES(?,?,?,?,?,?)',p.id,p.name,p.quantity,p.minimum_quantity,p.created_at,p.updated_at)}
+export async function deleteProduct(id:string){const d=await getDb();await d.runAsync('DELETE FROM shopping_items WHERE product_id=?',id);await d.runAsync('DELETE FROM products WHERE id=?',id)}
+export async function saveShopping(s:ShoppingItem){const d=await getDb();await d.runAsync('INSERT OR REPLACE INTO shopping_items VALUES(?,?,?,?,?,?,?)',s.id,s.product_id,s.name,s.quantity,s.completed?1:0,s.created_at,s.updated_at)}
+export async function deleteShopping(id:string){const d=await getDb();await d.runAsync('DELETE FROM shopping_items WHERE id=?',id)}
