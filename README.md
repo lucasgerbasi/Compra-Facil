@@ -29,7 +29,8 @@
 A tela Ler cupom fiscal está disponível na página inicial.
 
 Menu da tela "Ler cupom fiscal" (Fotografar cupom / Escolher imagem):
-![Menu Cupom](https://imgs/screenshot8.PNG)
+
+![Menu Cupom](imgs/screenshot8.PNG)
 
 No Android/iOS, fotografe um cupom ou escolha uma imagem.
 
@@ -40,10 +41,12 @@ O app prepara uma lista de possíveis produtos. O usuário pode corrigir nomes, 
 Só depois da confirmação o app soma as quantidades aos produtos existentes ou cria novos produtos. As alterações passam pelo mesmo fluxo de persistência local e sincronização Supabase do app.
 
 Nota fiscal real com o texto extraído na parte inferior:
-![Nota fiscal exemplo](https://imgs/screenshot9.PNG)
+
+![Nota fiscal exemplo](imgs/screenshot9.PNG)
 
 Seção "Revise antes de salvar": os itens identificados no cupom são extraídos e exibidos como checkboxes individuais, permitindo escolher quais serão adicionados ao banco de dados.
-![Revise](https://imgs/screenshot10.PNG)
+
+![Revise](imgs/screenshot10.PNG)
 
 Importante sobre a plataforma: expo-text-extractor contém código nativo e não está incluído no Expo Go padrão. Para testar OCR real em Android, é necessário gerar um development build/compilar o app com o módulo nativo. No navegador, a leitura automática usa Tesseract.js com o idioma português. Na primeira utilização, o navegador precisa de internet para baixar o modelo de idioma; a primeira leitura pode demorar. Se a leitura não ficar boa, o texto extraído continua editável e pode ser corrigido antes de preparar os produtos. A seleção de imagens usa expo-image-picker.
 
